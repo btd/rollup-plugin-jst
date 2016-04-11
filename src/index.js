@@ -23,14 +23,13 @@ export default function( options = {} ) {
 
       const tpl = template( code, templateOptions );
 
-      const source = tpl.source;
+      let hasEscape = false;
+      const source = tpl.source.replace(/__e = _.escape/, function() {
+        hasEscape = true;
+        return '__e = escape';
+      });
 
-      const intro = /__e = _.escape/.test(source) ?
-        `
-        import escape from 'lodash-es/escape';
-        var _ = { escape: escape };
-        `:
-        '';
+      const intro = hasEscape ? "import escape from 'lodash-es/escape'" : "";
 
       return `
       ${intro}

@@ -1,21 +1,22 @@
 # rollup-plugin-jst
 
-Precompile lodash templates
+Precompile lodash templates to javascript. It uses lodash-es/escapa for escaping capabilities. So it should be installed in dev dependencies.
 
 
 ## Installation
 
 ```bash
 npm i -S lodash-es # if you use <%- %> escaping
-npm i -D rollup-plugin-jst
+npm i -D rollup-plugin-jst rollup-plugin-node-resolve
 ```
 
 
-## Usage
+## Usage Example
 
 ```js
 import { rollup } from 'rollup';
 import jst from 'rollup-plugin-jst';
+import resolve from 'rollup-plugin-node-resolve';
 
 rollup({
   entry: 'src/main.js',
@@ -32,6 +33,10 @@ rollup({
       templateOptions: {
         variable: 'data' // default variable for template is 'data',
       }
+    }),
+    resolve({
+      jsnext: true,
+      main: true
     })
   ]
 }).then(...)

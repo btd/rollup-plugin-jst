@@ -2,7 +2,7 @@ import { extname } from 'path';
 import { createFilter } from 'rollup-pluginutils';
 
 import template from 'lodash/template';
-import htmlclean from 'htmlclean';
+import { minify as minifyHtml } from 'html-minifier';
 
 
 export default function( options = {} ) {
@@ -12,9 +12,9 @@ export default function( options = {} ) {
 
   const templateOptions = options.templateOptions || { variable: 'data' };
 
-  const useHtmlclean = options.htmlclean || false;
+  const minify = options.minify || false;
 
-  const htmlcleanOptions = options.htmlcleanOptions || { };
+  const minifyOptions = options.minifyOptions || { };
 
   return {
     transform( code, id ) {
@@ -26,8 +26,8 @@ export default function( options = {} ) {
         return null;
       }
 
-      if ( useHtmlclean ) {
-        code = htmlclean(code, htmlcleanOptions);
+      if ( minify ) {
+        code = minifyHtml(code, minifyOptions);
       }
 
       const tpl = template( code, templateOptions );

@@ -31,7 +31,7 @@ describe( 'rollup-plugin-jst', () => {
   it( 'compiles a component - htmlclean', () => {
     return rollup({
       entry: 'sample/c.ejs',
-      plugins: [ jst({ htmlclean: true }) ]
+      plugins: [ jst({ minify: true, minifyOptions: { collapseWhitespace: true } }) ]
     }).then( executeBundle );
   });
 });

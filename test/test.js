@@ -27,4 +27,11 @@ describe( 'rollup-plugin-jst', () => {
       plugins: [ jst() ]
     }).then( executeBundle );
   });
+
+  it( 'compiles a component - htmlclean', () => {
+    return rollup({
+      entry: 'sample/c.ejs',
+      plugins: [ jst({ htmlclean: true }) ]
+    }).then( executeBundle );
+  });
 });

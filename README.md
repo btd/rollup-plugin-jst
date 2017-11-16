@@ -32,6 +32,16 @@ rollup({
       // You can pass options to _.template(code, templateOptions)
       templateOptions: {
         variable: 'data' // default variable for template is 'data',
+      },
+
+      // You can enable HTML minification before the template is compiled
+      // by default turned off
+      minify: true,
+
+      // You can pass options to HTMLMinifier
+      // see github.com/kangax/html-minifier for documentation
+      minifyOptions: {
+        collapseWhitespace: true
       }
     }),
     resolve({

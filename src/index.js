@@ -1,32 +1,31 @@
-import { extname } from 'path';
-import { createFilter } from 'rollup-pluginutils';
+const { extname } = require("path");
+const { createFilter } = require("rollup-pluginutils");
 
-import template from 'lodash/template';
+const template = require("lodash/template");
 
+export default function(options = {}) {
+  const filter = createFilter(options.include, options.exclude);
 
-export default function( options = {} ) {
-  const filter = createFilter( options.include, options.exclude );
+  const extensions = options.extensions || [".html", ".ejs", ".jst"];
 
-  const extensions = options.extensions || [ '.html', '.ejs', '.jst' ];
-
-  const templateOptions = options.templateOptions || { variable: 'data' };
+  const templateOptions = options.templateOptions || { variable: "data" };
 
   return {
-    transform( code, id ) {
-      if ( !filter( id ) ) {
+    transform(code, id) {
+      if (!filter(id)) {
         return null;
       }
 
-      if ( !~extensions.indexOf( extname( id ) ) ) {
+      if (!~extensions.indexOf(extname(id))) {
         return null;
       }
 
-      const tpl = template( code, templateOptions );
+      const tpl = template(code, templateOptions);
 
       let hasEscape = false;
-      const source = tpl.source.replace(/__e = _.escape/, function() {
+      const source = tpl.source.replace(/__e = _.escape/, () => {
         hasEscape = true;
-        return '__e = escape';
+        return "__e = escape";
       });
 
       const intro = hasEscape ? "import escape from 'lodash-es/escape'" : "";

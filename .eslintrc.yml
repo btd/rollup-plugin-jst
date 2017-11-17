@@ -11,7 +11,6 @@ env:
 
 parserOptions:
   ecmaVersion: 6
-  sourceType: "module"
 
 rules:
   quotes: 0

@@ -2,18 +2,18 @@
   "name": "rollup-plugin-jst",
   "version": "1.0.1",
   "description": "",
-  "main": "dist/rollup-plugin-jst.cjs.js",
   "scripts": {
     "test": "mocha test/test.js"
   },
   "author": "Denis Bardadym <bardadymchik@gmail.com>",
   "license": "MIT",
-  "jsnext:main": "src/index.js",
+  "main": "src/index.js",
   "files": [
     "src/",
     "README.md"
   ],
   "dependencies": {
+    "html-minifier": "^3.5.6",
     "lodash": "^4.9.0",
     "rollup-pluginutils": "^2.0.1"
   },

@@ -14,17 +14,24 @@ function executeBundle(bundle) {
 }
 
 describe("rollup-plugin-jst", () => {
-  it("compiles a component - escape", () => {
+  it("escape", () => {
     return rollup({
       input: "sample/a.ejs",
       plugins: [jst()]
     }).then(executeBundle);
   });
 
-  it("compiles a component - noescape", () => {
+  it("noescape", () => {
     return rollup({
       input: "sample/b.ejs",
       plugins: [jst()]
+    }).then(executeBundle);
+  });
+
+  it("htmlclean", () => {
+    return rollup({
+      input: "sample/c.ejs",
+      plugins: [jst({ minify: true, minifyOptions: { collapseWhitespace: true } })]
     }).then(executeBundle);
   });
 });

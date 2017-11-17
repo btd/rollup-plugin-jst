@@ -4,7 +4,7 @@ const { createFilter } = require("rollup-pluginutils");
 const template = require("lodash/template");
 const htmlMinifier = require("html-minifier");
 
-export default function(options = {}) {
+module.exports = function(options = {}) {
   const filter = createFilter(options.include, options.exclude);
 
   const extensions = options.extensions || [".html", ".ejs", ".jst"];
@@ -45,4 +45,4 @@ export default function(options = {}) {
       `;
     }
   };
-}
+};

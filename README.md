@@ -1,7 +1,7 @@
 # rollup-plugin-jst
 
-Precompile lodash templates to javascript. It uses lodash-es/escapa for escaping capabilities. So it should be installed in dev dependencies.
-
+Precompile lodash templates to javascript. It uses lodash-es/escapa for escaping capabilities. So it should be installed
+in dev dependencies.
 
 ## Installation
 
@@ -9,7 +9,6 @@ Precompile lodash templates to javascript. It uses lodash-es/escapa for escaping
 npm i -S lodash-es # if you use <%- %> escaping
 npm i -D rollup-plugin-jst rollup-plugin-node-resolve
 ```
-
 
 ## Usage Example
 
@@ -42,10 +41,17 @@ rollup({
       // see github.com/kangax/html-minifier for documentation
       minifyOptions: {
         collapseWhitespace: true
-      }
+      },
+
+      // if you do not want to use lodash-es/escape for some reason
+      // (e.g because it is quite huge for just escape function)
+      // you can set which module to use - it should have single default export
+      // you should care about correct resolving and handing of this file
+      // if it is not using modules
+      escapeModule: 'escape-html'
     }),
     resolve({
-      jsnext: true,
+      module: true,
       main: true
     })
   ]

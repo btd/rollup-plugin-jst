@@ -15,6 +15,8 @@ module.exports = function(options = {}) {
 
   const minifyOptions = options.minifyOptions || {};
 
+  const escapeModule = options.escapeModule || "lodash-es/escape";
+
   return {
     transform(code, id) {
       if (!filter(id)) {
@@ -37,7 +39,7 @@ module.exports = function(options = {}) {
         return "__e = escape";
       });
 
-      const intro = hasEscape ? "import escape from 'lodash-es/escape'" : "";
+      const intro = hasEscape ? "import escape from " + JSON.stringify(escapeModule) + ";" : "";
 
       return `
       ${intro}

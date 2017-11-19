@@ -34,4 +34,11 @@ describe("rollup-plugin-jst", () => {
       plugins: [jst({ minify: true, minifyOptions: { collapseWhitespace: true } })]
     }).then(executeBundle);
   });
+
+  it("other escape module", () => {
+    return rollup({
+      input: "sample/a.ejs",
+      plugins: [jst({ escapeModule: "escape-html" })]
+    }).then(executeBundle);
+  });
 });

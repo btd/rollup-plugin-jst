@@ -5,6 +5,10 @@
   "scripts": {
     "test": "mocha test/test.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/btd/rollup-plugin-jst.git"
+  },
   "author": "Denis Bardadym <bardadymchik@gmail.com>",
   "license": "MIT",
   "main": "src/index.js",
